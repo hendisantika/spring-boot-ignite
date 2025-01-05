@@ -5,6 +5,7 @@ import id.my.hendisantika.ignite.model.Department;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 
@@ -30,4 +31,12 @@ public class EmployeeRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Transactional
+    public void saveAll(int numberOfRows) {
+        for (int i = 0; i < numberOfRows; i++) {
+            jdbcTemplate.update("INSERT INTO employee (name, department, salary) " + "VALUES (?, ?, ?)",
+                    faker.name().firstName(), departments[random.nextInt(3)].name(),
+                    faker.number().numberBetween(10000, 10000000));
+        }
+    }
 }
