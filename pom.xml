@@ -15,7 +15,7 @@
     <description>Demo project to cache data with Apache Ignite via Spring boot</description>
     <properties>
         <java.version>23</java.version>
-        <ignite-spring-cache-ext.version>1.0.0</ignite-spring-cache-ext.version>
+        <ignite-spring-cache-ext.version>2.0.0</ignite-spring-cache-ext.version>
         <ignite.version>2.12.0</ignite.version>
     </properties>
     <dependencies>
