@@ -1,1 +1,14 @@
 services:
+  postgres:
+    image: postgres:17-alpine3.21
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: yu71
+      POSTGRES_PASSWORD: 53cret
+    ports:
+      - "5432:5432"
+    networks:
+      - local_network
+networks:
+  local_network:
+    driver: bridge
