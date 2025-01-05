@@ -1,5 +1,6 @@
 package id.my.hendisantika.ignite.config;
 
+import id.my.hendisantika.ignite.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
