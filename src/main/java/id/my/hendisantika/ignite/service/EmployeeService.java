@@ -1,9 +1,12 @@
 package id.my.hendisantika.ignite.service;
 
+import id.my.hendisantika.ignite.model.Department;
 import id.my.hendisantika.ignite.model.Employee;
 import id.my.hendisantika.ignite.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,5 +29,9 @@ public class EmployeeService {
         s.getSalary();
 
         employeeRepository.saveAll(numberOfRows);
+    }
+
+    public List<Employee> getEmployeesForDepartment(Department department) {
+        return employeeRepository.getEmployeesForDepartment(department);
     }
 }
