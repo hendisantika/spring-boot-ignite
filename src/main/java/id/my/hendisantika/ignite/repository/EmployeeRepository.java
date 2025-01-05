@@ -1,12 +1,16 @@
 package id.my.hendisantika.ignite.repository;
 
 import com.github.javafaker.Faker;
+import id.my.hendisantika.ignite.mapper.EmployeeRowMapper;
 import id.my.hendisantika.ignite.model.Department;
+import id.my.hendisantika.ignite.model.Employee;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -38,5 +42,12 @@ public class EmployeeRepository {
                     faker.name().firstName(), departments[random.nextInt(3)].name(),
                     faker.number().numberBetween(10000, 10000000));
         }
+    }
+
+    @Cacheable(value = "employee")
+    public List<Employee> getEmployeesForDepartment(Department department) {
+        log.info("Read data from database.");
+        return jdbcTemplate.query("select * from employee where department = '" + department + "'",
+                new EmployeeRowMapper());
     }
 }
