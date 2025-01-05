@@ -16,7 +16,7 @@
     <properties>
         <java.version>23</java.version>
         <ignite-spring-cache-ext.version>2.0.0</ignite-spring-cache-ext.version>
-        <ignite.version>2.12.0</ignite.version>
+        <ignite.version>2.16.0</ignite.version>
     </properties>
     <dependencies>
         <dependency>
