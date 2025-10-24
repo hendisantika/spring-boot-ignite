@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,9 +24,15 @@ import org.springframework.stereotype.Component;
 public class StartupRunner implements ApplicationRunner {
 
     private final EmployeeService employeeService;
+    private final JdbcTemplate jdbcTemplate;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        log.info("[START] Creating Employee Table");
+        jdbcTemplate.execute("DROP TABLE if EXISTS employee");
+        jdbcTemplate.execute("CREATE TABLE if NOT EXISTS employee (id serial PRIMARY KEY, NAME VARCHAR(255) NOT NULL, department VARCHAR(48) NOT NULL, salary INTEGER)");
+        log.info("[END] Creating Employee Table");
+
         log.info("[START] Saving Employee Data");
         employeeService.saveAll(30000);
         log.info("[END] Saving Employee Data");
